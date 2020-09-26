@@ -3,8 +3,11 @@ This is a health care enrollment application. It uses Rest APIs to enroll a pers
 
 Below are the end-points which can be used to access the application.
 1. To get an existing Enrollee's data use end-point - /healthcare/enrollment/enrollee/{Id}
+    
     Id - This is the Id of the Enrollee
+    
     Ex: /healthcare/enrollment/enrollee/1 - gives information about Enrollee with Enrollee Id 1
+    
 2. To add/register an Enrollee, use end-point - /healthcare/enrollment/enroll
    New Enrollee's information needs to be passed in the form of Json
    Ex: {
