@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.healthcare.enrollment.controller.EnrollmentController;
 import com.healthcare.enrollment.dto.DependentVO;
 //import com.healthcare.enrollment.controller.Enrolee;
 import com.healthcare.enrollment.dto.EnrolleeVO;
@@ -17,7 +18,10 @@ import com.healthcare.enrollment.repository.DependentRepository;
 import com.healthcare.enrollment.repository.EnrolleeRepository;
 import com.healthcare.enrollment.util.Converter;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class EnrolleeServiceImpl implements EnrolleeService{
 
 	@Autowired
