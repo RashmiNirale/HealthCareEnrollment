@@ -28,7 +28,7 @@ public class EnrollmentController {
 	@Autowired
 	EnrolleeService enrolleeService;
 
-	@ApiOperation(value = "Get the application Enrollee", tags = "Healthcare Enrollment")
+	@ApiOperation(value = "Get Enrollee", notes = "This method returns an Enrollee based on the Enrollee Id")
 	@GetMapping("/enrollee/{id}")
 	public ResponseEntity<EnrolleeVO> getEnrollee(@PathVariable("id") Long id) {
 		log.info("Enrollee request for Id:{}", id);
@@ -36,17 +36,23 @@ public class EnrollmentController {
 	}
 
 	@PostMapping("/enroll")
+	@ApiOperation(value = "Create Enrollee", notes = "This method adds an Enrollee to the application")
 	public ResponseEntity<EnrolleeVO> enroll(@RequestBody EnrolleeVO enroleeVO) {
+		log.info("Add Enrollee");
 		return ResponseEntity.ok(enrolleeService.addEnrollee(enroleeVO));
 	}
 
 	@PutMapping("/enrollee/{id}")
+	@ApiOperation(value = "Update Enrollee", notes = "This method updates an existing Enrollee")
 	public ResponseEntity<EnrolleeVO> update(@PathVariable("id") Long id, @RequestBody EnrolleeVO enroleeVO) {
+		log.info("Update Enrollee request for Id:{}", id);
 		return ResponseEntity.ok(enrolleeService.updateEnrollee(id, enroleeVO));
 	}
 
 	@DeleteMapping("/enrollee/{id}")
+	@ApiOperation(value = "Delete Enrollee", notes = "This method deletes an existing Enrollee from the application")
 	public ResponseEntity<String> delete(@PathVariable("id") long id) {
+		log.info("Delete Enrollee request for Id:{}", id);
 		String response = enrolleeService.deleteEnrollee(id);
 		if (null != response) {
 			return ResponseEntity.ok("deleted");
@@ -56,9 +62,9 @@ public class EnrollmentController {
 	}
 
 	@PostMapping("/dependent/{id}")
-	// @ApiOperation(value = "Create Dependent", notes = "This method creates a new
-	// Dependent")
+    @ApiOperation(value = "Create Dependent", notes = "This method creates a new Dependent")
 	public ResponseEntity<EnrolleeVO> addDependent(@PathVariable("id") long id, @RequestBody DependentVO depenVo) {
+		log.info("Add Dependent request to Enrollee Id:{}", id);
 		EnrolleeVO enrollees = enrolleeService.addDependent(id, depenVo);
 		if (null != enrollees) {
 			return ResponseEntity.ok(enrollees);
@@ -67,10 +73,10 @@ public class EnrollmentController {
 	}
 
 	@PutMapping("/dependent/{id}")
-	// @ApiOperation(value = "Create Dependent", notes = "This method creates a new
-	// Dependent")
+	@ApiOperation(value = "Update Dependent", notes = "This method updates an existing Dependent")
 	public ResponseEntity<EnrolleeVO> updateDependent(@PathVariable("id") long id,
 			@RequestBody DependentVO depenVo) {
+		log.info("Update Dependent request for Id:{}", id);
 		EnrolleeVO enrollees = enrolleeService.updateDependent(id, depenVo);
 		if (null != enrollees) {
 			return ResponseEntity.ok(enrollees);
@@ -79,7 +85,9 @@ public class EnrollmentController {
 	}
 
 	@DeleteMapping("/dependent/{id}")
+	@ApiOperation(value = "Remove Dependent", notes = "This method deletes a Dependent from an existing Enrollee")
 	public ResponseEntity<EnrolleeVO> removeDependent(@PathVariable("id") long id) {
+		log.info("Delete Dependent request for Id:{}", id);
 		EnrolleeVO enrollees = enrolleeService.removeDependent(id);
 		if (null != enrollees) {
 			return ResponseEntity.ok(enrollees);

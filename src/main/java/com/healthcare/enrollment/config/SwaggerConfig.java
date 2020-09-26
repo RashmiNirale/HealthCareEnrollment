@@ -23,13 +23,15 @@ public class SwaggerConfig {
 				.apiInfo(apiInfo()).select().paths(postPaths()).build();
 	}
 
+	@SuppressWarnings("unchecked")
 	private Predicate<String> postPaths() {
 		return or(regex("/healthcare/enrollment.*"));
 	}
 
+	@SuppressWarnings("deprecation")
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("HealthCare API")
-				.description("HealthCare API reference for developers")
+				.description("HealthCare API reference")
 				.termsOfServiceUrl("http://HealthCare.com")
 				.contact("healthcare@gmail.com").license("HealthCare License")
 				.licenseUrl("healthcare@gmail.com").version("1.0").build();
